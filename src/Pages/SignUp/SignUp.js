@@ -1,8 +1,55 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-    
+    const { createUser, updateUser } = useContext(AuthContext);
+    const [signUpError, setSignUPError] = useState('');
+    const navigate = useNavigate();
+
+    const handleSignUp = (data) => {
+        setSignUPError('');
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User Created Successfully.')
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        saveUser(data.name, data.email, data.category);
+                    })
+                    .catch(err => console.log(err));
+            })
+            .catch(error => {
+                console.log(error)
+                setSignUPError(error.message)
+            });
+    }
+
+    const saveUser = (name, email, category) =>{
+        const user ={name, email, category};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            //setCreatedUserEmail(email);
+            navigate('/');
+        })
+    }
     
   return (
     <div className="h-[800px] flex justify-center items-center">
@@ -94,10 +141,7 @@ const SignUp = () => {
             Please Login
           </Link>
         </p>
-        <div className="divider">OR</div>
-        <button className="btn btn-outline btn-accent w-full">
-          SIGN UP WITH GOOGLE
-        </button>
+       
       </div>
     </div>
   );
