@@ -18,7 +18,6 @@ const HomeCategories = () => {
     return <Loading></Loading>
   }
   
-  console.log(products);
     return (
         <div>
             <section className="bg-white dark:bg-gray-900 mt-5 rounded-xl">
