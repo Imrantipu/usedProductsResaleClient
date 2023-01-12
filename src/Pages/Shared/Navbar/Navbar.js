@@ -57,12 +57,12 @@ const Navbar = () => {
             </li>
               <li>
             <Link className="link link-hover" to="/login">
-                  Blog
+                  Login
                 </Link>
             </li>
               <li>
             <Link className="link link-hover" to="/signup">
-                  Blog
+                  SignUp
                 </Link>
             </li>
             </ul>
@@ -101,12 +101,12 @@ const Navbar = () => {
             </li>
             <li>
             <Link className="link link-hover" to="/login">
-                  Blog
+                  Login
                 </Link>
             </li>
             <li>
             <Link className="link link-hover" to="/signup">
-                  Blog
+                  SignUp
                 </Link>
             </li>
           </ul>
