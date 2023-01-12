@@ -55,6 +55,16 @@ const Navbar = () => {
                   Blog
                 </Link>
             </li>
+              <li>
+            <Link className="link link-hover" to="/login">
+                  Blog
+                </Link>
+            </li>
+              <li>
+            <Link className="link link-hover" to="/signup">
+                  Blog
+                </Link>
+            </li>
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl font-bold">
@@ -86,6 +96,16 @@ const Navbar = () => {
             </li>
             <li>
             <Link className="link link-hover" to="/blog">
+                  Blog
+                </Link>
+            </li>
+            <li>
+            <Link className="link link-hover" to="/login">
+                  Blog
+                </Link>
+            </li>
+            <li>
+            <Link className="link link-hover" to="/signup">
                   Blog
                 </Link>
             </li>
