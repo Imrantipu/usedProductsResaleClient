@@ -9,6 +9,7 @@ const Products = () => {
     const [singleProduct, setSingleProduct] = useState(null);
 
     const items = Productsitems.category_items;
+    console.log(items);
    
     return (
         <section>
