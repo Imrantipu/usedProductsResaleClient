@@ -40,14 +40,12 @@ const SignUp = () => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(user)
         })
         .then(res => res.json())
         .then(data =>{
-            //setCreatedUserEmail(email);
-            navigate('/');
+               navigate('/');
         })
     }
     
@@ -129,7 +127,7 @@ const SignUp = () => {
           </select>
           </div>
           <input
-            className="btn  mt-5 w-full text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            className="btn  mt-5 w-full btn-primary "
             type="submit"
             value="Register"
           />
@@ -137,7 +135,7 @@ const SignUp = () => {
         </form>
         <p>
           Already have an account?
-          <Link className="text-sky-400" to="/login">
+          <Link className="text-sky-500" to="/login">
             Please Login
           </Link>
         </p>

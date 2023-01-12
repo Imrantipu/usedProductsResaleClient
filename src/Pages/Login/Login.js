@@ -12,6 +12,7 @@ const Login = () => {
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -25,8 +26,6 @@ const Login = () => {
       .catch((error) => console.error(error));
   };
 
-
-  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = data => 
   {
@@ -63,9 +62,9 @@ const Login = () => {
             {loginError && <p className="text-error">{loginError}</p>}
             <label className="label"> <span className="label-text">Forget Password?</span> </label>
           </div>
-          <input className="btn w-full text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit" value='Login'/>
+          <input className="btn w-full btn-primary" type="submit" value='Login'/>
         </form>
-        <p>New to Computers Hub?<Link className="text-sky-400" to='/signup'> Create new account</Link></p>
+        <p>New to MobileHunt<Link className="text-sky-500" to='/signup'> Create new account</Link></p>
         <div className="divider">OR</div>
         <button onClick={handleGoogleSignIn} className="btn btn-outline btn-accent w-full"> <FcGoogle></FcGoogle> &nbsp;&nbsp; LOGIN WITH GOOGLE</button>
       </div>

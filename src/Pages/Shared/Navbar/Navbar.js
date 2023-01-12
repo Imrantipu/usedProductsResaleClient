@@ -124,7 +124,7 @@ const Navbar = () => {
             { user?.uid ?
            <>
             <li>
-            <button onClick={handleLogOut}>
+            <button onClick={handleLogOut} className="btn btn-primary">
             <Link className="link link-hover" to="#">
             Sign out
                 </Link>
@@ -193,9 +193,6 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <Link to="/">Logout</Link>
-              </li>
             </ul>
           </div>
         </div>
