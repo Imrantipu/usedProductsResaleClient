@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(AuthContext);
+
+        const handleLogOut = () => {
+          logOut()
+          .then(()=> {})
+          .catch(error => console.error(error));
+        }
   return (
     <div>
       <div className="navbar bg-base-300 rounded-xl ">
@@ -54,17 +62,31 @@ const Navbar = () => {
             <Link className="link link-hover" to="/blog">
                   Blog
                 </Link>
+            </li> 
+            { user?.uid ?
+           <>
+            <li>
+            <button onClick={handleLogOut}>
+            <Link className="link link-hover" to="#">
+            Sign out
+                </Link>
+            </button>
             </li>
-              <li>
+           </>
+          :
+         <>
+          <li>
             <Link className="link link-hover" to="/login">
                   Login
                 </Link>
             </li>
-              <li>
+            <li>
             <Link className="link link-hover" to="/signup">
                   SignUp
                 </Link>
             </li>
+         </>
+          }
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl font-bold">
@@ -99,7 +121,19 @@ const Navbar = () => {
                   Blog
                 </Link>
             </li>
+            { user?.uid ?
+           <>
             <li>
+            <button onClick={handleLogOut}>
+            <Link className="link link-hover" to="#">
+            Sign out
+                </Link>
+            </button>
+            </li>
+           </>
+          :
+         <>
+          <li>
             <Link className="link link-hover" to="/login">
                   Login
                 </Link>
@@ -109,6 +143,8 @@ const Navbar = () => {
                   SignUp
                 </Link>
             </li>
+         </>
+          }
           </ul>
         </div>
         <div className="navbar-end">
