@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProductsCard = ({ item, setSingleProduct }) => {
-    console.log(item);
+
   const {
     image_url,
     name,

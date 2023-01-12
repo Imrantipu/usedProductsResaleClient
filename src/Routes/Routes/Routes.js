@@ -12,7 +12,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Products from "../../Pages/Home/HomeCategories/Products";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
-import PrivateRoute from "../PrivateRoute";
+import PrivateRoute from "../Routes/AdminRoute";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
 

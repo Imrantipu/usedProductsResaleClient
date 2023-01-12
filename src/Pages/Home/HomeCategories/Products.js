@@ -6,6 +6,7 @@ import BookingModal from "../../../components/BookingModal";
 const Products = () => {
 
     const Productsitems = useLoaderData();
+
     const [singleProduct, setSingleProduct] = useState(null);
 
     const items = Productsitems.category_items;
