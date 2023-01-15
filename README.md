@@ -1,4 +1,4 @@
 
-adminRole: imran
-adminEmail: imran@mail.com
-adminPassword: 017IMRAN
+adminRole: imran\
+adminEmail: imran@mail.com\
+adminPassword: 017IMRAN\
