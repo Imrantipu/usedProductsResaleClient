@@ -1,23 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
-import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
-import Blog from "../../Pages/Blog/Blog";
-import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
-import AllByers from "../../Pages/Dashboard/AllBuyers/AllByers";
-import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
-import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
-import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
-import Error from "../../Pages/Error/Error";
-import Home from "../../Pages/Home/Home/Home";
-import Products from "../../Pages/Home/HomeCategories/Products";
-import Login from "../../Pages/Login/Login";
-import SignUp from "../../Pages/SignUp/SignUp";
-import PrivateRoute from "../Routes/AdminRoute";
-import AdminRoute from "./AdminRoute";
+import Home from "./../../Pages/Home/Home/Home";
+import Products from "./../../Pages/Home/HomeCategories/Products";
+import SignUp from "./../../Pages/SignUp/SignUp";
+import Blog from "./../../Pages/Blog/Blog";
+import Login from "./../../Pages/Login/Login";
+import DashboardLayout from "../../Layout/DashboardLayout";
+import MyOrders from "./../../Pages/Dashboard/MyOrders/MyOrders";
+import MyProducts from "./../../Pages/Dashboard/MyProducts/MyProducts";
+import AddProduct from "./../../Pages/Dashboard/AddProduct/AddProduct";
+import AllByers from "./../../Pages/Dashboard/AllBuyers/AllByers";
+import AllSellers from "./../../Pages/Dashboard/AllSellers/AllSellers";
+import Error from "./../../Pages/Error/Error";
+import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
-     
   {
     path: "/",
     element: <Main></Main>,
@@ -28,55 +27,77 @@ export const router = createBrowserRouter([
       },
       {
         path: "/products/:id",
-        element: <PrivateRoute><Products></Products></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Products></Products>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://assignment-12-server-wheat.vercel.app/products/${params.id}`
+          ),
       },
       {
-        path: "/signup",
-        element: <SignUp></SignUp>,
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/login",
         element: <Login></Login>,
       },
       {
-        path:'/blog',
-        element:<Blog></Blog>
+        path: "/signup",
+        element: <SignUp></SignUp>,
       },
-      
     ],
   },
+
   {
-    path:'/dashboard',
-    element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    children:[
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
       {
-          path: '/dashboard',
-          element: <MyOrders></MyOrders>
+        path: "/dashboard/myorders",
+        element: <MyOrders></MyOrders>,
+      },
+
+      {
+        path: "/dashboard/addproduct",
+        element: (
+          <SellerRoute>
+            <AddProduct></AddProduct>
+          </SellerRoute>
+        ),
       },
       {
-        path: '/dashboard/addproduct',
-        element:<SellerRoute><AddProduct></AddProduct></SellerRoute>
-    },
-    {
-        path: '/dashboard/myproduct',
-        element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
-    },
-
-    {
-      path: '/dashboard/allbuyers',
-      element: <AdminRoute> <AllByers></AllByers> </AdminRoute>
-    },
-    {
-      path: '/dashboard/allsellers',
-      element: <AdminRoute> <AllSellers></AllSellers> </AdminRoute>
-    },
-    ]
+        path: "/dashboard/myproduct",
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allbuyers",
+        element: (
+          <AdminRoute>
+            <AllByers></AllByers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allsellers",
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
+      },
+    ],
   },
+
   {
-    path:'*',
-    element:<Error></Error>
-  }
-  
+    path: "*",
+    element: <Error></Error>,
+  },
 ]);

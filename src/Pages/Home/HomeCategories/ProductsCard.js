@@ -26,12 +26,9 @@ const ProductsCard = ({ item, setSingleProduct }) => {
           <p>YearOfUse : {yearOfUse}</p>
           <p>Date : {date}</p>
           <div className="card-actions justify-end">
-            <label
-              htmlFor="booking-modal"
-              onClick={() => setSingleProduct(item)}
-            >
-              <button className="btn btn-primary">Buy Now</button>
-            </label>
+            
+              <label htmlFor="booking-modal" onClick={()=>setSingleProduct(item)} className="btn btn-primary">Book Now</label>
+          
           </div>
         </div>
       </div>

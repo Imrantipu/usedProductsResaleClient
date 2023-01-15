@@ -11,13 +11,15 @@ const Banner = () => {
               <div className="artboard artboard-demo phone-1">MobileHunt</div>
             </div>
           </div>
-          <div >
+          <div>
+          
             <h1 className="text-5xl font-bold">
-              Get more money for your used smartphone
+              Get/Save money for your used smartphone
             </h1>
             <p className="py-6">
-            Selling your smartphone has just become… handy.
-            <span className="font-bold">MobileHunt</span> gets your smartphone off your hands pronto and at top dollar!
+            <span className="font-bold">Buying/Selling</span> your smartphone has just become… handy.
+              <span className="font-bold">MobileHunt</span> gets your smartphone
+              off your hands pronto and at top dollar!
             </p>
             <button className="btn btn-primary">Get Started</button>
           </div>

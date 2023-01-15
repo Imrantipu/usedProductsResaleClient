@@ -1,3 +1,4 @@
+import React from 'react';
 import { GoogleAuthProvider } from "firebase/auth";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -29,13 +30,12 @@ const Login = () => {
 
   const handleLogin = data => 
   {
-    console.log(data);
     setLoginError('');
 
     signIn(data.email, data.password)
     .then(result => {
       const user = result.user;
-      console.log(user);
+      console.log("get the user from firebase", user);
       navigate(from, { replace: true });
     })
     .catch(error => {

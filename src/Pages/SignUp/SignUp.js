@@ -1,54 +1,59 @@
-import { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { Link } from 'react-router-dom';
+import { useState } from "react";
 
 const SignUp = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser } = useContext(AuthContext);
-    const [signUpError, setSignUPError] = useState('');
-    const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [signUpError, setSignUPError] = useState("");
+  const navigate = useNavigate();
 
-    const handleSignUp = (data) => {
-        setSignUPError('');
-        createUser(data.email, data.password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                toast.success('User Created Successfully.')
-                const userInfo = {
-                    displayName: data.name
-                }
-                updateUser(userInfo)
-                    .then(() => {
-                        saveUser(data.name, data.email, data.category);
-                    })
-                    .catch(err => console.log(err));
-            })
-            .catch(error => {
-                console.log(error)
-                setSignUPError(error.message)
-            });
-    }
+  const handleSignUp = (data) => {
+    setSignUPError("");
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log("sign up pase user created", user);
+        toast.success("User Created Successfully.");
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {
+            saveUser(data.name, data.email, data.category);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        console.log(error);
+        setSignUPError(error.message);
+      });
+  };
 
-    const saveUser = (name, email, category) =>{
-        const user ={name, email, category};
-        fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(user)
-        })
-        .then(res => res.json())
-        .then(data =>{
-               navigate('/');
-        })
-    }
-    
+  const saveUser = (name, email, category) => {
+    const user = { name, email, category };
+    fetch("https://assignment-12-server-wheat.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        navigate("/");
+      });
+  };
+
   return (
     <div className="h-[800px] flex justify-center items-center">
       <div className="w-96 p-7">
@@ -112,19 +117,21 @@ const SignUp = () => {
             )}
           </div>
           <div form-control w-full max-w-xs mt-5>
-          <label className="label">
+            <label className="label">
               {" "}
               <span className="label-text">Select Category</span>
             </label>
-          <select
-            {...register("category", {
-              message: "Please select seller or buyer",
-            })}
-            className="input input-bordered w-full"
-          >
-            <option value="buyer" selected>Buyer</option>
-            <option value="seller">Seller</option>
-          </select>
+            <select
+              {...register("category", {
+                message: "Please select seller or buyer",
+              })}
+              className="input input-bordered w-full"
+            >
+              <option value="buyer" selected>
+                Buyer
+              </option>
+              <option value="seller">Seller</option>
+            </select>
           </div>
           <input
             className="btn  mt-5 w-full btn-primary "
@@ -139,7 +146,6 @@ const SignUp = () => {
             Please Login
           </Link>
         </p>
-       
       </div>
     </div>
   );
